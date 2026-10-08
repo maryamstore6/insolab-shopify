@@ -1,0 +1,33 @@
+# EditorConfig — https://editorconfig.org
+# Keeps the theme repo consistent across editors (VS Code, Sublime, vim, ...).
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# Liquid templates and section schemas: 2-space indent, LF.
+[*.liquid]
+indent_style = space
+indent_size = 2
+
+# Theme JSON (templates/*.json, config/settings_schema.json, locales): 2-space.
+[*.json]
+indent_style = space
+indent_size = 2
+
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+[*.{css,scss,js}]
+indent_style = space
+indent_size = 2
+
+# Markdown: trailing whitespace can be meaningful (line breaks), so keep it.
+[*.md]
+trim_trailing_whitespace = false

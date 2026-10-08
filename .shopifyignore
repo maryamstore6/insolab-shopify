@@ -1,0 +1,27 @@
+# Files and folders the Shopify CLI must NOT upload.
+# Syntax is the same as .gitignore.
+# Docs: https://shopify.dev/docs/storefronts/themes/tools/cli#the-shopifyignore-file
+#
+# The theme folders (assets, config, layout, locales, sections, snippets,
+# templates) are at the repo root and ARE uploaded. Everything below is
+# repo-only tooling that would otherwise be pushed and cause errors.
+
+# --- repo tooling / docs ---
+README.md
+docs/
+.github/
+.gitignore
+.editorconfig
+.theme-check.yml
+shopify.theme.toml
+package.json
+package-lock.json
+node_modules/
+
+# --- build output ---
+*.zip
+dist/
+build/
+
+# --- Shopify CLI local state ---
+.shopify/

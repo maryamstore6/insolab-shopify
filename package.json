@@ -1,0 +1,22 @@
+{
+  "name": "insolab-shopify-theme",
+  "version": "1.0.0",
+  "private": true,
+  "description": "InsoLab Shopify theme — dev tooling wrapper around the Shopify CLI. The theme itself lives at the repo root (layout/, sections/, assets/, ...).",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "shopify theme dev",
+    "push": "shopify theme push --path .",
+    "pull": "shopify theme pull",
+    "check": "shopify theme check",
+    "list": "shopify theme list",
+    "release:zip": "python3 scripts/build-zip.py",
+    "theme:info": "shopify theme info"
+  },
+  "devDependencies": {
+    "@shopify/cli": "^4.9.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

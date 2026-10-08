@@ -1,0 +1,56 @@
+name: Theme bug report
+description: Report a bug in the InsoLab Shopify theme (layout, section, styling or JS).
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a theme bug. Please fill in as much as you can —
+        the more detail, the faster it gets fixed.
+
+  - type: input
+    id: page_section
+    attributes:
+      label: Which page / section?
+      description: The template and section involved, e.g. "Home page — Hero" or "Product page — main-product".
+      placeholder: "Home page — Testimonials section"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened?
+      description: Describe the actual behaviour. Include any Liquid errors, console errors, or broken layout you saw.
+      placeholder: "The testimonial cards overlap on mobile and the section title is cut off."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+      description: Describe the correct/expected behaviour.
+      placeholder: "Cards should stack vertically with even spacing and the title should wrap."
+    validations:
+      required: true
+
+  - type: input
+    id: browser_device
+    attributes:
+      label: Browser / device
+      description: Browser, OS and device (or theme editor preview vs live store).
+      placeholder: "Chrome 130 on Android 14 / Pixel 7; also seen in theme editor preview"
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Drag and drop an image here, or paste a link. Desktop and mobile shots are both welcome.
+      placeholder: "Drag an image file into this box, or paste an image URL."
+    validations:
+      required: false

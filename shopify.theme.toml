@@ -1,0 +1,32 @@
+# ============================================================
+#  InsoLab — Shopify theme sync configuration
+#
+#  This file lets the Shopify CLI (and Shopify's GitHub integration)
+#  know which store and which theme this repo targets.
+#
+#  It is NOT uploaded to Shopify. Keep it in the repo root.
+# ============================================================
+
+# --- Default target used by `shopify theme dev` / `push` / `pull` ---
+[environments.default]
+store = "insolab-my.myshopify.com"      # <-- GANTI dengan domain .myshopify.com anda
+path  = "."
+theme = "123456789012"                  # <-- GANTI dengan theme ID (lihat README)
+
+# --- A second target if you want a staging theme ---
+# [environments.staging]
+# store = "insolab-my.myshopify.com"
+# path  = "."
+# theme = "987654321098"
+
+# --- Optional: ignore local-only files when pushing ---
+[environments.default.ignore]
+# Shopify rejects unknown root folders, so never push these:
+files = [
+  "README.md",
+  ".gitignore",
+  ".github/**",
+  "shopify.theme.toml",
+  "*.zip",
+  "docs/**",
+]

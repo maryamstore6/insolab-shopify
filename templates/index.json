@@ -1,0 +1,67 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero"
+    },
+    "marquee": {
+      "type": "marquee"
+    },
+    "kenapa": {
+      "type": "kenapa"
+    },
+    "products": {
+      "type": "products"
+    },
+    "split1": {
+      "type": "split-video",
+      "settings": {
+        "eyebrow": "Kenapa InsoLab",
+        "heading": "Dibuat mengikut bentuk kaki anda — bukan mengikut saiz kasut.",
+        "body": "Insole pasaran dibuat ikut \"saiz\". Tapi setiap orang berjalan dengan cara berbeza. Jadi anda ambil bentuk kaki sendiri di rumah, kami hasilkan ikut bentuk itu.",
+        "cta_label": "Lihat Produk",
+        "cta_url": "#products",
+        "video_alt": "Teknik menekan kaki ke foam tray untuk mengambil bentuk kaki"
+      }
+    },
+    "split2": {
+      "type": "split-video",
+      "settings": {
+        "eyebrow": "100% Dari Rumah",
+        "heading": "Tiada temujanji. Tiada menunggu. Tiada ke mana-mana.",
+        "body": "Kami pos impression kit ke rumah anda. Tekan kaki ke foam tray ikut panduan bergambar — 5 minit sahaja. Hantar balik guna airway bill kami. Postage kami tanggung.",
+        "cta_label": "Soalan Lazim",
+        "cta_url": "#faq",
+        "flip": true,
+        "video_alt": "Pelanggan membuat imprint kaki sendiri di rumah"
+      }
+    },
+    "process": {
+      "type": "process"
+    },
+    "testimonials": {
+      "type": "testimonials"
+    },
+    "guarantee": {
+      "type": "guarantee"
+    },
+    "faq": {
+      "type": "faq"
+    },
+    "cta": {
+      "type": "cta"
+    }
+  },
+  "order": [
+    "hero",
+    "marquee",
+    "kenapa",
+    "products",
+    "split1",
+    "split2",
+    "process",
+    "testimonials",
+    "guarantee",
+    "faq",
+    "cta"
+  ]
+}

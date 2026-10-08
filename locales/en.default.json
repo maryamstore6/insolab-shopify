@@ -1,0 +1,49 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Tag",
+      "page": "Halaman"
+    },
+    "search": {
+      "placeholder": "Cari",
+      "submit": "Cari"
+    },
+    "404": {
+      "title": "Halaman tidak dijumpai",
+      "subtext": "Halaman ini tiada."
+    },
+    "pagination": {
+      "previous": "Sebelum",
+      "next": "Seterusnya"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Tambah ke Troli",
+      "sold_out": "Habis",
+      "unavailable": "Tidak tersedia",
+      "quantity": "Kuantiti",
+      "price": {
+        "from": "Dari"
+      }
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Troli anda",
+      "empty": "Troli anda kosong.",
+      "continue_shopping": "Terus membeli"
+    },
+    "general_total": "Jumlah",
+    "checkout": "Teruskan ke Pembayaran",
+    "update": "Kemas kini"
+  },
+  "layout": {
+    "cart": {
+      "title": "Troli"
+    },
+    "navigation": {
+      "menu": "Menu"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{%- comment -%}
+  Brand logo. Uses the merchant's uploaded logo when present, otherwise the
+  bundled lockup so the theme never shows a broken image on first install.
+{%- endcomment -%}
+{%- if settings.logo != blank -%}
+  <img src="{{ settings.logo | image_url: width: 600 }}"
+       alt="{{ shop.name | escape }}"
+       width="{{ settings.logo.width }}"
+       height="{{ settings.logo.height }}"
+       loading="eager">
+{%- else -%}
+  <img src="{{ 'logo-lockup@2x.png' | asset_url }}"
+       srcset="{{ 'logo-lockup@2x.png' | asset_url }} 2x, {{ 'logo-lockup@3x.png' | asset_url }} 3x"
+       alt="{{ shop.name | escape }}" width="300" height="155" loading="eager">
+{%- endif -%}

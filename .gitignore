@@ -1,0 +1,26 @@
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# ---- Shopify CLI ----
+.shopify/
+.shopify-cli/
+shopify.theme.toml.bak
+
+# ---- build output / packaged theme ----
+*.zip
+dist/
+build/
+
+# ---- Node (only used by the CLI, not by the theme) ----
+node_modules/
+package-lock.json
+
+# ---- secrets: NEVER commit ----
+.env
+.env.*
+*.pem
+*.key

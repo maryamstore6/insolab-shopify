@@ -1,0 +1,54 @@
+# ============================================================
+#  Release Theme ZIP
+#
+#  On a version tag (v*) or a manual run, builds insolab-shopify-theme.zip
+#  with the THEME FILES AT THE ZIP ROOT (no wrapping folder) using python3
+#  zipfile, then attaches it to a GitHub Release.
+#
+#  Install the result via Shopify admin:
+#    Online Store -> Themes -> Add theme -> Upload zip file -> pick the asset.
+#
+#  No secrets required — the default GITHUB_TOKEN is enough (contents: write).
+# ============================================================
+name: Release Theme ZIP
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to attach the zip to (e.g. v1.0.0)'
+        required: true
+        type: string
+
+# contents: write -> create the release and upload the asset
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build & attach theme zip
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Build the zip via the same script the README documents, so there is
+      # ONE source of truth for how the archive is assembled. The script
+      # writes every entry relative to the repo root (theme folders at the
+      # ZIP ROOT) and self-checks for a wrapping folder / missing theme.liquid.
+      - name: Build theme zip (files at zip root)
+        run: python3 scripts/build-zip.py
+
+      # softprops/action-gh-release has a floating v3 major tag (there is no
+      # bare `v2` tag), so pin to v3.
+      - name: Attach zip to GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
+          name: ${{ github.event.inputs.tag || github.ref_name }}
+          files: insolab-shopify-theme.zip
+          fail_on_unmatched_files: true
+          generate_release_notes: true

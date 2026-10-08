@@ -1,0 +1,42 @@
+<section class="section">
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">Troli</span><h1>Troli anda.</h1></div>
+
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post" novalidate>
+        <table class="cart-table">
+          <thead>
+            <tr><th>Produk</th><th>Harga</th><th>Kuantiti</th><th>Jumlah</th></tr>
+          </thead>
+          <tbody>
+            {%- for item in cart.items -%}
+              <tr>
+                <td>
+                  <a href="{{ item.url }}">{{ item.product.title }}</a>
+                  {%- unless item.product.has_only_default_variant -%}
+                    <small>{{ item.variant.title }}</small>
+                  {%- endunless -%}
+                </td>
+                <td>{{ item.price | money }}</td>
+                <td><input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Kuantiti {{ item.product.title | escape }}"></td>
+                <td>{{ item.line_price | money }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+
+        <div class="summary-total">
+          <span>Jumlah</span><span>{{ cart.total_price | money }}</span>
+        </div>
+
+        <div class="hero-actions" style="margin-top:var(--s-4)">
+          <button type="submit" name="update" class="btn btn--ghost">Kemas kini</button>
+          <button type="submit" name="checkout" class="btn btn--primary btn--lg">Teruskan ke Pembayaran</button>
+        </div>
+      </form>
+    {%- else -%}
+      <p>Troli anda kosong.</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">Lihat Produk</a>
+    {%- endif -%}
+  </div>
+</section>

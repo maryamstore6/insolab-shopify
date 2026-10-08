@@ -1,0 +1,101 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "InsoLab",
+    "theme_version": "1.0.0",
+    "theme_author": "InsoLab",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://wa.me/60176055349"
+  },
+  {
+    "name": "Warna",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Teks / hitam",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent (teal)",
+        "default": "#00B3B8"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_deep",
+        "label": "Accent gelap (CTA)",
+        "default": "#00777C"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_soft",
+        "label": "Accent lembut",
+        "default": "#E6F5F7"
+      },
+      {
+        "type": "color",
+        "id": "color_paper",
+        "label": "Latar belakang",
+        "default": "#F5F7FA"
+      }
+    ]
+  },
+  {
+    "name": "Tipografi",
+    "settings": [
+      {
+        "type": "text",
+        "id": "font_display",
+        "label": "Font tajuk (Google Fonts)",
+        "default": "Playfair Display",
+        "info": "Masukkan nama Google Font, contoh: Playfair Display, Sora, Poppins"
+      },
+      {
+        "type": "text",
+        "id": "font_body",
+        "label": "Font teks (Google Fonts)",
+        "default": "Source Sans 3"
+      }
+    ]
+  },
+  {
+    "name": "Jenama",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Gambar kongsi (OG)"
+      }
+    ]
+  },
+  {
+    "name": "WhatsApp",
+    "settings": [
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "Nombor WhatsApp",
+        "default": "60176055349",
+        "info": "Format antarabangsa tanpa +, contoh: 60176055349"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_label",
+        "label": "Label butang",
+        "default": "WhatsApp"
+      }
+    ]
+  }
+]
