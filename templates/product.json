@@ -1,7 +1,59 @@
 {
   "sections": {
     "main": {
-      "type": "main-product"
+      "type": "main-product",
+      "blocks": {
+        "trust-1": {
+          "type": "trust",
+          "settings": {
+            "text": "100 Hari Jaminan"
+          }
+        },
+        "trust-2": {
+          "type": "trust",
+          "settings": {
+            "text": "Impression Kit Percuma"
+          }
+        },
+        "trust-3": {
+          "type": "trust",
+          "settings": {
+            "text": "Penghantaran Percuma"
+          }
+        },
+        "benefit-1": {
+          "type": "benefit",
+          "settings": {
+            "text": "Dibuat ikut acuan kaki anda sendiri"
+          }
+        },
+        "benefit-2": {
+          "type": "benefit",
+          "settings": {
+            "text": "Imprint di rumah — 5 minit, tiada temujanji"
+          }
+        },
+        "benefit-3": {
+          "type": "benefit",
+          "settings": {
+            "text": "Penghantaran seluruh Malaysia"
+          }
+        },
+        "benefit-4": {
+          "type": "benefit",
+          "settings": {
+            "text": "Tak puas hati? Kami baiki dalam 100 hari"
+          }
+        },
+        "quote-1": {
+          "type": "quote",
+          "settings": {
+            "quote": "Kerja saya berdiri 8 jam sehari. Lepas pakai ni, kaki tak penat macam dulu.",
+            "name": "Ahmad R.",
+            "role": "Pengguna On My Feet All Day"
+          }
+        }
+      }
     }
   },
   "order": [
