@@ -41,7 +41,7 @@
                   {%- if product.compare_at_price > product.price -%}
                     <s>{{ product.compare_at_price | money }}</s>
                   {%- endif -%}
-                  {{ product.price | money }} <small>/ unit</small>
+                  {{ product.price | money }} <small>/ {{ 'products.product.per_unit' | t }}</small>
                 </div>
                 <a href="{{ product.url }}" class="btn btn--primary">{{ section.settings.cta_label }}</a>
               </div>

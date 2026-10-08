@@ -1,6 +1,9 @@
 <section class="section">
   <div class="wrap" style="text-align:center">
-    <div class="section-head"><span class="eyebrow">404</span><h1>Halaman tidak dijumpai.</h1></div>
-    <a href="{{ routes.root_url }}" class="btn btn--primary btn--lg">Kembali ke Utama</a>
+    <div class="section-head">
+      <span class="eyebrow">{{ 'general.404.eyebrow' | t }}</span>
+      <h1>{{ 'general.404.title' | t }}</h1>
+    </div>
+    <a href="{{ routes.root_url }}" class="btn btn--primary btn--lg">{{ 'general.404.back' | t }}</a>
   </div>
 </section>

@@ -26,18 +26,20 @@
         <div class="product-body">
 
           {%- if gift_card.expired and gift_card.enabled -%}
-            <span class="product-badge">Tamat tempoh</span>
+            <span class="product-badge">{{ 'general.gift_card.expired' | t }}</span>
           {%- endif -%}
 
-          <p class="product-desc"><strong>Kod kad hadiah</strong></p>
+          <p class="product-desc"><strong>{{ 'general.gift_card.code_label' | t }}</strong></p>
           <p class="product-price" id="gift-card-code" data-gift-card-digits>{{ gift_card.code | format_code }}</p>
 
           {%- if gift_card.balance != gift_card.initial_value -%}
-            <p class="product-desc">Nilai asal: {{ gift_card.initial_value | money }}</p>
+            <p class="product-desc">{{ 'general.gift_card.initial_value' | t }}: {{ gift_card.initial_value | money }}</p>
           {%- endif -%}
 
           {%- if gift_card.expires_on -%}
-            <p class="product-desc">Sah sehingga: <time datetime="{{ gift_card.expires_on | date: '%Y-%m-%d' }}">{{ gift_card.expires_on | date: '%d %B %Y' }}</time></p>
+            <p class="product-desc">{{ 'general.gift_card.expires_on' | t }}:
+              <time datetime="{{ gift_card.expires_on | date: '%Y-%m-%d' }}">{{ gift_card.expires_on | date: '%d %B %Y' }}</time>
+            </p>
           {%- endif -%}
 
           {%- if gift_card.message != blank -%}
@@ -50,11 +52,11 @@
             script (any QR renderer can read data-identifier).
           {%- endcomment -%}
           <p class="product-desc" data-gift-card-qr data-identifier="{{ gift_card.qr_identifier }}" style="margin-top:var(--s-3)">
-            Tunjuk kod ini atau imbas kod QR semasa membuat pembayaran.
+            {{ 'general.gift_card.instruction' | t }}
           </p>
 
           <div class="product-foot" style="gap:var(--s-2)">
-            <button type="button" class="btn btn--ghost" onclick="window.print()">Cetak</button>
+            <button type="button" class="btn btn--ghost" onclick="window.print()">{{ 'general.gift_card.print' | t }}</button>
             <a class="btn btn--primary" href="{{ shop.url }}">{{ shop.name }}</a>
           </div>
 
@@ -63,7 +65,7 @@
 
       {%- if gift_card.pass_url -%}
         <p style="margin-top:var(--s-3)">
-          <a href="{{ gift_card.pass_url }}">Tambah ke Apple Wallet</a>
+          <a href="{{ gift_card.pass_url }}">{{ 'general.gift_card.apple_wallet' | t }}</a>
         </p>
       {%- endif -%}
 

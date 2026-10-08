@@ -1,12 +1,20 @@
 <section class="section">
   <div class="wrap">
-    <div class="section-head"><span class="eyebrow">Troli</span><h1>Troli anda.</h1></div>
+    <div class="section-head">
+      <span class="eyebrow">{{ 'cart.general.title' | t }}</span>
+      <h1>{{ 'cart.general.heading' | t }}</h1>
+    </div>
 
     {%- if cart.item_count > 0 -%}
       <form action="{{ routes.cart_url }}" method="post" novalidate>
         <table class="cart-table">
           <thead>
-            <tr><th>Produk</th><th>Harga</th><th>Kuantiti</th><th>Jumlah</th></tr>
+            <tr>
+              <th>{{ 'cart.general.product' | t }}</th>
+              <th>{{ 'cart.general.price' | t }}</th>
+              <th>{{ 'cart.general.quantity' | t }}</th>
+              <th>{{ 'cart.general.total' | t }}</th>
+            </tr>
           </thead>
           <tbody>
             {%- for item in cart.items -%}
@@ -18,7 +26,10 @@
                   {%- endunless -%}
                 </td>
                 <td>{{ item.price | money }}</td>
-                <td><input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Kuantiti {{ item.product.title | escape }}"></td>
+                <td>
+                  <input type="number" name="updates[]" value="{{ item.quantity }}" min="0"
+                         aria-label="{{ 'cart.general.quantity' | t }} {{ item.product.title | escape }}">
+                </td>
                 <td>{{ item.line_price | money }}</td>
               </tr>
             {%- endfor -%}
@@ -26,17 +37,17 @@
         </table>
 
         <div class="summary-total">
-          <span>Jumlah</span><span>{{ cart.total_price | money }}</span>
+          <span>{{ 'cart.general.total' | t }}</span><span>{{ cart.total_price | money }}</span>
         </div>
 
         <div class="hero-actions" style="margin-top:var(--s-4)">
-          <button type="submit" name="update" class="btn btn--ghost">Kemas kini</button>
-          <button type="submit" name="checkout" class="btn btn--primary btn--lg">Teruskan ke Pembayaran</button>
+          <button type="submit" name="update" class="btn btn--ghost">{{ 'cart.general.update' | t }}</button>
+          <button type="submit" name="checkout" class="btn btn--primary btn--lg">{{ 'cart.general.checkout' | t }}</button>
         </div>
       </form>
     {%- else -%}
-      <p>Troli anda kosong.</p>
-      <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">Lihat Produk</a>
+      <p>{{ 'cart.general.empty' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">{{ 'cart.general.continue_shopping' | t }}</a>
     {%- endif -%}
   </div>
 </section>

@@ -58,7 +58,14 @@
       {%- for block in section.blocks -%}
         <div class="process-row" {{ block.shopify_attributes }}>
           <div class="process-visual">
-            <img src="{% if block.settings.icon != blank %}{{ block.settings.icon | image_url: width: 240 }}{% else %}{{ 'process-01-order.svg' | asset_url }}{% endif %}"
+            {%- comment -%}
+              The step icon is a BUNDLED asset filename, not a merchant upload.
+              An image_picker cannot carry a bundled file (Shopify: image_picker
+              "doesn't support the default attribute"), so this is a text setting
+              resolved through asset_url. A merchant can point it at any file in
+              assets/, and the default keeps the theme complete on install.
+            {%- endcomment -%}
+            <img src="{{ block.settings.icon | default: 'process-01-order.svg' | asset_url }}"
                  alt="" width="120" height="92" loading="lazy" aria-hidden="true">
           </div>
           <div class="process-num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
@@ -94,7 +101,13 @@
         { "type": "text", "id": "name", "label": "Nama langkah", "default": "Order" },
         { "type": "textarea", "id": "description", "label": "Keterangan", "default": "Pilih produk, buat pesanan." },
         { "type": "text", "id": "time", "label": "Masa (pilihan)" },
-        { "type": "image_picker", "id": "icon", "label": "Ikon langkah (pilihan)" }
+                {
+          "type": "text",
+          "id": "icon",
+          "label": "Ikon langkah",
+          "info": "Nama fail dalam assets/, contoh: process-02-kit.svg",
+          "default": "process-01-order.svg"
+        }
       ]
     }
   ],

@@ -8,13 +8,30 @@
       "placeholder": "Cari",
       "submit": "Cari"
     },
-    "404": {
-      "title": "Halaman tidak dijumpai",
-      "subtext": "Halaman ini tiada."
-    },
     "pagination": {
       "previous": "Sebelum",
       "next": "Seterusnya"
+    },
+    "404": {
+      "eyebrow": "404",
+      "title": "Halaman tidak dijumpai.",
+      "back": "Kembali ke Utama"
+    },
+    "password_page": {
+      "label": "Kata laluan",
+      "placeholder": "Masukkan kata laluan",
+      "submit": "Masuk",
+      "thanks": "Terima kasih kerana berkunjung.",
+      "opening_soon": "Kedai ini akan dibuka tidak lama lagi."
+    },
+    "gift_card": {
+      "expired": "Tamat tempoh",
+      "code_label": "Kod kad hadiah",
+      "initial_value": "Nilai asal",
+      "expires_on": "Sah sehingga",
+      "instruction": "Tunjuk kod ini atau imbas kod QR semasa membuat pembayaran.",
+      "print": "Cetak",
+      "apple_wallet": "Tambah ke Apple Wallet"
     }
   },
   "products": {
@@ -23,6 +40,7 @@
       "sold_out": "Habis",
       "unavailable": "Tidak tersedia",
       "quantity": "Kuantiti",
+      "per_unit": "unit",
       "price": {
         "from": "Dari"
       }
@@ -30,18 +48,19 @@
   },
   "cart": {
     "general": {
-      "title": "Troli anda",
+      "title": "Troli",
+      "heading": "Troli anda.",
       "empty": "Troli anda kosong.",
-      "continue_shopping": "Terus membeli"
-    },
-    "general_total": "Jumlah",
-    "checkout": "Teruskan ke Pembayaran",
-    "update": "Kemas kini"
+      "continue_shopping": "Lihat Produk",
+      "product": "Produk",
+      "price": "Harga",
+      "quantity": "Kuantiti",
+      "total": "Jumlah",
+      "update": "Kemas kini",
+      "checkout": "Teruskan ke Pembayaran"
+    }
   },
   "layout": {
-    "cart": {
-      "title": "Troli"
-    },
     "navigation": {
       "menu": "Menu"
     }
