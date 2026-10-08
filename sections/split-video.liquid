@@ -2,13 +2,37 @@
   <div class="wrap split {% if section.settings.flip %}split--flip{% endif %}">
     <div class="split-visual split-visual--video">
       {%- if section.settings.video != blank -%}
-        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'split-visual-film' }}
+        {%- comment -%}
+          video_tag accepts the same HTML attributes; poster and aria-label are
+          passed so the frame is not black before load and screen readers get a
+          description. `controls: false` keeps it a background film.
+        {%- endcomment -%}
+        {%- if section.settings.poster != blank -%}
+          {{ section.settings.video | video_tag:
+               autoplay: true, loop: true, muted: true, playsinline: true,
+               controls: false, preload: 'metadata',
+               class: 'split-visual-film',
+               poster: section.settings.poster,
+               aria-label: section.settings.video_alt }}
+        {%- else -%}
+          {{ section.settings.video | video_tag:
+               autoplay: true, loop: true, muted: true, playsinline: true,
+               controls: false, preload: 'metadata',
+               class: 'split-visual-film',
+               aria-label: section.settings.video_alt }}
+        {%- endif -%}
       {%- elsif section.settings.video_url != blank -%}
         <video class="split-visual-film"
                {% if section.settings.poster != blank %}poster="{{ section.settings.poster | image_url: width: 1200 }}"{% else %}poster="{{ 'imprint-guide-poster.jpg' | asset_url }}"{% endif %}
                preload="metadata" muted loop playsinline autoplay
                aria-label="{{ section.settings.video_alt | escape }}">
           <source src="{{ section.settings.video_url }}" type="video/mp4">
+          {%- comment -%}
+            An external URL can only be one file, so this branch cannot offer a
+            webm alternative the way the bundled branch does. Use MP4 (H.264)
+            here for the widest support, or upload to Shopify Content -> Files
+            and use the "Video Shopify" field instead.
+          {%- endcomment -%}
         </video>
       {%- elsif section.settings.bundled_video == 'guide' or section.settings.bundled_video == 'adult' -%}
         {%- if section.settings.bundled_video == 'guide' -%}

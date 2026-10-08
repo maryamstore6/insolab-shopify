@@ -46,17 +46,86 @@
     "name": "Tipografi",
     "settings": [
       {
-        "type": "text",
+        "type": "select",
         "id": "font_display",
-        "label": "Font tajuk (Google Fonts)",
+        "label": "Font tajuk",
         "default": "Playfair Display",
-        "info": "Masukkan nama Google Font, contoh: Playfair Display, Sora, Poppins"
+        "info": "Font untuk semua tajuk besar.",
+        "options": [
+          {
+            "value": "Playfair Display",
+            "label": "Playfair Display (serif elegan)"
+          },
+          {
+            "value": "Fraunces",
+            "label": "Fraunces (serif moden)"
+          },
+          {
+            "value": "Sora",
+            "label": "Sora (geometrik moden)"
+          },
+          {
+            "value": "Space Grotesk",
+            "label": "Space Grotesk (teknikal)"
+          },
+          {
+            "value": "Poppins",
+            "label": "Poppins (mesra, bulat)"
+          },
+          {
+            "value": "Outfit",
+            "label": "Outfit (bersih, moden)"
+          },
+          {
+            "value": "Archivo",
+            "label": "Archivo (Swiss, tegas)"
+          },
+          {
+            "value": "Inter",
+            "label": "Inter (neutral, mudah baca)"
+          }
+        ]
       },
       {
-        "type": "text",
+        "type": "select",
         "id": "font_body",
-        "label": "Font teks (Google Fonts)",
-        "default": "Source Sans 3"
+        "label": "Font teks",
+        "default": "Source Sans 3",
+        "info": "Font untuk perenggan dan teks kecil.",
+        "options": [
+          {
+            "value": "Source Sans 3",
+            "label": "Source Sans 3 (bersih, profesional)"
+          },
+          {
+            "value": "Inter",
+            "label": "Inter (neutral, mudah baca)"
+          },
+          {
+            "value": "Work Sans",
+            "label": "Work Sans (mesra, hangat)"
+          },
+          {
+            "value": "IBM Plex Sans",
+            "label": "IBM Plex Sans (teknikal, tepat)"
+          },
+          {
+            "value": "Archivo",
+            "label": "Archivo (Swiss, tegas)"
+          },
+          {
+            "value": "Lato",
+            "label": "Lato (kukuh, mudah baca)"
+          },
+          {
+            "value": "Open Sans",
+            "label": "Open Sans (universal)"
+          },
+          {
+            "value": "Nunito Sans",
+            "label": "Nunito Sans (lembut, bulat)"
+          }
+        ]
       }
     ]
   },
@@ -89,6 +158,13 @@
         "label": "Nombor WhatsApp",
         "default": "60176055349",
         "info": "Format antarabangsa tanpa +, contoh: 60176055349"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_display",
+        "label": "Nombor untuk dipaparkan",
+        "default": "017-605 5349",
+        "info": "Nombor yang ditulis dalam teks laman (boleh guna sengkang)."
       },
       {
         "type": "text",

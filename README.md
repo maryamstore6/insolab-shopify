@@ -102,7 +102,8 @@ Semua yang berikut boleh diubah **tanpa sentuh kod**:
 | Gambar | Panel kiri → pilih **Add image** / tukar gambar |
 | Warna brand | **Theme settings** (ikon gear) → Warna |
 | Font | **Theme settings** → Tipografi |
-| Nombor WhatsApp | **Theme settings** → WhatsApp |
+| Nombor WhatsApp | **Theme settings** → WhatsApp → *Nombor WhatsApp* (pautan) + *Nombor untuk dipaparkan* (teks) |
+| Font | **Theme settings** → Tipografi (senarai pilihan, bukan taip nama) |
 | Susunan seksyen | Seret seksyen pada senarai kiri |
 | Tambah/buang seksyen | **Add section** / **Remove section** |
 | Soalan lazim (FAQ) | Klik seksyen Soalan Lazim → tambah/edit kumpulan & soalan |
@@ -192,6 +193,14 @@ Untuk tukar, buka **Customize → Split (video + teks) → Video terbina dalam**
 **Keutamaan:** kalau anda muat naik video sendiri (medan **Video Shopify**)
 atau isi **pautan fail video**, itu yang akan dimainkan — video terbina dalam
 hanya jadi sandaran.
+
+Kedua-dua video sudah ditetapkan: **Split 1** = Panduan imprint,
+**Split 2** = Imprint dewasa (jadi laman tidak main klip sama dua kali).
+
+**Nota video:** video main automatik tetapi **senyap** dan **tiada butang
+kawalan** — ia berfungsi sebagai latar, bukan video yang perlu dikawal. Ia guna
+`preload="metadata"`, jadi hanya metadata dimuat masa halaman buka; fail penuh
+dimuat bila pembaca skrol sampai ke situ.
 
 Video guna `preload="metadata"` + `poster`, jadi ia **tidak** dimuat turun
 sepenuhnya semasa halaman dibuka — hanya poster. Video dimainkan bila pembaca
