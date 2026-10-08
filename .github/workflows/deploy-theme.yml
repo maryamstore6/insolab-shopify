@@ -70,7 +70,26 @@ jobs:
             echo "SHOPIFY_FLAG_STORE secret not set; using store from shopify.theme.toml."
           fi
 
+      # Skip (do not fail) when the merchant has not yet stored a token.
+      # Without this the job fails with a confusing auth error.
+      - name: Check for a theme access token
+        id: token
+        run: |
+          if [ -n "$SHOPIFY_CLI_THEME_TOKEN" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+            echo "Theme access token found - will push to Shopify."
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::SHOPIFY_CLI_THEME_TOKEN is not set. Skipping the push."
+            echo "To enable auto-deploy: create a theme access token in Shopify admin"
+            echo "(Online Store -> Themes -> ... -> Theme access -> Create token) and"
+            echo "add it as a repository secret named SHOPIFY_CLI_THEME_TOKEN."
+          fi
+        env:
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+
       - name: Push theme
+        if: steps.token.outputs.present == 'true'
         env:
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
         run: npx shopify theme push --path . --no-color

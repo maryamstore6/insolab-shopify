@@ -4,7 +4,7 @@
       {%- if section.settings.eyebrow != blank -%}
         <span class="eyebrow">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
-      <h1 class="section-head-title">{{ section.settings.heading }}</h1>
+      <h1>{{ section.settings.heading }}</h1>
       {%- if section.settings.intro != blank -%}
         <p class="lead">{{ section.settings.intro }}</p>
       {%- endif -%}
@@ -12,23 +12,26 @@
 
     {%- paginate collections by 24 -%}
       {%- if collections.size > 0 -%}
-        <div class="grid grid--3" data-reveal-group>
+        <div class="product-grid" data-reveal-group>
           {%- for collection in collections -%}
-            <article class="card" data-reveal>
+            <article class="product-card" data-reveal>
               {%- if collection.image -%}
-                <a class="product-card-media" href="{{ collection.url }}" tabindex="-1" aria-hidden="true">
-                  <img src="{{ collection.image | image_url: width: 640 }}"
-                       srcset="{{ collection.image | image_url: width: 320 }} 320w,
-                               {{ collection.image | image_url: width: 640 }} 640w,
-                               {{ collection.image | image_url: width: 960 }} 960w"
-                       sizes="(max-width: 900px) 92vw, 33vw"
-                       alt="{{ collection.image.alt | default: collection.title | escape }}"
-                       width="640" height="640" loading="lazy" decoding="async">
-                </a>
+                <div class="product-media">
+                  <a href="{{ collection.url }}" tabindex="-1" aria-hidden="true">
+                    <img src="{{ collection.image | image_url: width: 640 }}"
+                         srcset="{{ collection.image | image_url: width: 320 }} 320w,
+                                 {{ collection.image | image_url: width: 640 }} 640w,
+                                 {{ collection.image | image_url: width: 960 }} 960w"
+                         sizes="(max-width: 900px) 92vw, 40vw"
+                         alt="{{ collection.image.alt | default: collection.title | escape }}"
+                         class="product-art" width="640" height="640"
+                         loading="lazy" decoding="async">
+                  </a>
+                </div>
               {%- endif -%}
 
-              <div class="product-card-body">
-                <h2 class="product-card-title"><a href="{{ collection.url }}">{{ collection.title }}</a></h2>
+              <div class="product-body">
+                <h2 class="product-name"><a href="{{ collection.url }}">{{ collection.title }}</a></h2>
 
                 {%- if section.settings.show_description and collection.description != blank -%}
                   <p class="product-desc">{{ collection.description | strip_html | truncate: 140 }}</p>
@@ -36,16 +39,17 @@
 
                 <p class="product-desc">{{ collection.all_products_count }} {{ section.settings.count_label }}</p>
 
-                <a class="btn btn--ghost" href="{{ collection.url }}">{{ section.settings.view_label }}</a>
+                <div class="product-foot">
+                  <a class="btn btn--ghost" href="{{ collection.url }}">{{ section.settings.view_label }}</a>
+                </div>
               </div>
             </article>
           {%- endfor -%}
         </div>
 
         {%- if paginate.pages > 1 -%}
-          <nav class="pagination"
-               aria-label="{{ section.settings.pagination_label }}"
-               style="display:flex;flex-wrap:wrap;gap:var(--s-2);align-items:center;justify-content:center;margin-top:var(--s-4)">
+          <nav class="hero-actions" style="margin-top:var(--s-4)"
+               aria-label="{{ section.settings.pagination_label }}">
             {%- if paginate.previous -%}
               <a class="btn btn--ghost" href="{{ paginate.previous.url }}">{{ section.settings.prev_label }}</a>
             {%- endif -%}

@@ -4,7 +4,7 @@
       {%- if section.settings.eyebrow != blank -%}
         <span class="eyebrow">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
-      <h1 class="section-head-title">{{ article.title }}</h1>
+      <h1>{{ article.title }}</h1>
       {%- if section.settings.show_date -%}
         <p class="lead">
           <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: section.settings.date_format }}</time>
@@ -13,7 +13,7 @@
     </div>
 
     {%- if article.image -%}
-      <figure class="article-media" data-reveal>
+      <figure data-reveal>
         <img src="{{ article.image | image_url: width: 1600 }}"
              srcset="{{ article.image | image_url: width: 800 }} 800w,
                      {{ article.image | image_url: width: 1200 }} 1200w,

@@ -5,7 +5,7 @@
       {%- if section.settings.eyebrow != blank -%}
         <span class="eyebrow">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
-      <h1 class="section-head-title">{{ heading }}</h1>
+      <h1>{{ heading }}</h1>
       {%- if section.settings.intro != blank -%}
         <p class="lead">{{ section.settings.intro }}</p>
       {%- endif -%}
@@ -13,23 +13,26 @@
 
     {%- paginate blog.articles by section.settings.articles_per_page -%}
       {%- if blog.articles.size > 0 -%}
-        <div class="grid grid--3" data-reveal-group>
+        <div class="product-grid" data-reveal-group>
           {%- for article in blog.articles -%}
-            <article class="card" data-reveal>
+            <article class="product-card" data-reveal>
               {%- if article.image -%}
-                <a class="product-card-media" href="{{ article.url }}" tabindex="-1" aria-hidden="true">
-                  <img src="{{ article.image | image_url: width: 640 }}"
-                       srcset="{{ article.image | image_url: width: 320 }} 320w,
-                               {{ article.image | image_url: width: 640 }} 640w,
-                               {{ article.image | image_url: width: 960 }} 960w"
-                       sizes="(max-width: 900px) 92vw, 33vw"
-                       alt="{{ article.image.alt | default: article.title | escape }}"
-                       width="640" height="400" loading="lazy" decoding="async">
-                </a>
+                <div class="product-media">
+                  <a href="{{ article.url }}" tabindex="-1" aria-hidden="true">
+                    <img src="{{ article.image | image_url: width: 640 }}"
+                         srcset="{{ article.image | image_url: width: 320 }} 320w,
+                                 {{ article.image | image_url: width: 640 }} 640w,
+                                 {{ article.image | image_url: width: 960 }} 960w"
+                         sizes="(max-width: 900px) 92vw, 40vw"
+                         alt="{{ article.image.alt | default: article.title | escape }}"
+                         class="product-art" width="640" height="400"
+                         loading="lazy" decoding="async">
+                  </a>
+                </div>
               {%- endif -%}
 
-              <div class="product-card-body">
-                <h2 class="product-card-title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+              <div class="product-body">
+                <h2 class="product-name"><a href="{{ article.url }}">{{ article.title }}</a></h2>
 
                 {%- if section.settings.show_date -%}
                   <p class="product-desc">
@@ -39,16 +42,17 @@
 
                 <p class="product-desc">{{ article.excerpt_or_content | strip_html | truncate: 160 }}</p>
 
-                <a class="btn btn--ghost" href="{{ article.url }}">{{ section.settings.read_more_label }}</a>
+                <div class="product-foot">
+                  <a class="btn btn--ghost" href="{{ article.url }}">{{ section.settings.read_more_label }}</a>
+                </div>
               </div>
             </article>
           {%- endfor -%}
         </div>
 
         {%- if paginate.pages > 1 -%}
-          <nav class="pagination"
-               aria-label="{{ section.settings.pagination_label }}"
-               style="display:flex;flex-wrap:wrap;gap:var(--s-2);align-items:center;justify-content:center;margin-top:var(--s-4)">
+          <nav class="hero-actions" style="margin-top:var(--s-4)"
+               aria-label="{{ section.settings.pagination_label }}">
             {%- if paginate.previous -%}
               <a class="btn btn--ghost" href="{{ paginate.previous.url }}">{{ section.settings.prev_label }}</a>
             {%- endif -%}

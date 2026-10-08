@@ -5,7 +5,7 @@
       {%- if section.settings.eyebrow != blank -%}
         <span class="eyebrow">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
-      <h1 class="section-head-title">{{ heading }}</h1>
+      <h1>{{ heading }}</h1>
       {%- if section.settings.show_description and collection.description != blank -%}
         <div class="rte">{{ collection.description }}</div>
       {%- endif -%}
@@ -13,53 +13,56 @@
 
     {%- paginate collection.products by section.settings.products_per_page -%}
       {%- if collection.products.size > 0 -%}
-        <div class="grid grid--3" data-reveal-group>
+        <div class="product-grid" data-reveal-group>
           {%- for product in collection.products -%}
             <article class="product-card" data-reveal>
-              <a class="product-card-media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
-                {%- if product.featured_image -%}
-                  <img src="{{ product.featured_image | image_url: width: 640 }}"
-                       srcset="{{ product.featured_image | image_url: width: 320 }} 320w,
-                               {{ product.featured_image | image_url: width: 640 }} 640w,
-                               {{ product.featured_image | image_url: width: 960 }} 960w"
-                       sizes="(max-width: 900px) 92vw, 33vw"
-                       alt="{{ product.featured_image.alt | default: product.title | escape }}"
-                       width="640" height="640" loading="lazy" decoding="async">
-                {%- else -%}
-                  <img src="{{ 'insole-support.svg' | asset_url }}"
-                       alt="{{ product.title | escape }}"
-                       width="320" height="660" loading="lazy">
-                {%- endif -%}
-              </a>
+              <div class="product-media">
+                <a href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+                  {%- if product.featured_image -%}
+                    <img src="{{ product.featured_image | image_url: width: 640 }}"
+                         srcset="{{ product.featured_image | image_url: width: 320 }} 320w,
+                                 {{ product.featured_image | image_url: width: 640 }} 640w,
+                                 {{ product.featured_image | image_url: width: 960 }} 960w"
+                         sizes="(max-width: 900px) 92vw, 40vw"
+                         alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                         class="product-art" width="640" height="640"
+                         loading="lazy" decoding="async">
+                  {%- else -%}
+                    <img src="{{ 'insole-support.svg' | asset_url }}"
+                         alt="{{ product.title | escape }}"
+                         class="product-art" width="320" height="660" loading="lazy">
+                  {%- endif -%}
+                </a>
+              </div>
 
-              <div class="product-card-body">
+              <div class="product-body">
                 {%- unless product.available -%}
                   <span class="product-badge">{{ section.settings.sold_out_text }}</span>
                 {%- endunless -%}
 
-                <h2 class="product-card-title"><a href="{{ product.url }}">{{ product.title }}</a></h2>
+                <h2 class="product-name"><a href="{{ product.url }}">{{ product.title }}</a></h2>
 
                 {%- if product.description != blank -%}
                   <p class="product-desc">{{ product.description | strip_html | truncate: 140 }}</p>
                 {%- endif -%}
 
-                <div class="product-card-price">
-                  {%- if product.compare_at_price > product.price -%}
-                    <s>{{ product.compare_at_price | money }}</s>
-                  {%- endif -%}
-                  {{ product.price | money }}
+                <div class="product-foot">
+                  <div class="product-price">
+                    {%- if product.compare_at_price > product.price -%}
+                      <s>{{ product.compare_at_price | money }}</s>
+                    {%- endif -%}
+                    {{ product.price | money }}
+                  </div>
+                  <a class="btn btn--primary" href="{{ product.url }}">{{ section.settings.view_label }}</a>
                 </div>
-
-                <a class="btn btn--primary" href="{{ product.url }}">{{ section.settings.view_label }}</a>
               </div>
             </article>
           {%- endfor -%}
         </div>
 
         {%- if paginate.pages > 1 -%}
-          <nav class="pagination"
-               aria-label="{{ section.settings.pagination_label }}"
-               style="display:flex;flex-wrap:wrap;gap:var(--s-2);align-items:center;justify-content:center;margin-top:var(--s-4)">
+          <nav class="hero-actions" style="margin-top:var(--s-4)"
+               aria-label="{{ section.settings.pagination_label }}">
             {%- if paginate.previous -%}
               <a class="btn btn--ghost" href="{{ paginate.previous.url }}">{{ section.settings.prev_label }}</a>
             {%- endif -%}
