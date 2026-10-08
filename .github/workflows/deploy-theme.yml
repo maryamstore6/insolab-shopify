@@ -1,0 +1,76 @@
+# ============================================================
+#  Deploy Theme
+#
+#  On every push to main, pushes the theme to Shopify with the Shopify CLI
+#  (`shopify theme push --path .`). The theme files live at the REPO ROOT,
+#  so --path . is correct.
+#
+#  REQUIRED REPO SECRETS
+#  (GitHub -> repo -> Settings -> Secrets and variables -> Actions -> New secret):
+#    * SHOPIFY_CLI_THEME_TOKEN  A Shopify "Theme access" token.
+#    * SHOPIFY_FLAG_STORE       Store domain, e.g. your-store.myshopify.com
+#                               (OPTIONAL: if this secret is absent, the store
+#                                is read from shopify.theme.toml [environments.default].)
+#
+#  IMPORTANT: this only works AFTER the merchant creates a theme access token
+#  in Shopify admin:
+#     Online Store -> Themes -> ... (three dots) -> "Theme access" -> Create token
+#     (older stores: Settings -> Apps and sales channels -> Develop apps ->
+#      Create an app -> Admin API scopes -> enable "Theme templates and theme
+#      assets" -> Install app -> reveal the Admin API access token)
+#  Then paste that token into the SHOPIFY_CLI_THEME_TOKEN secret above.
+#
+#  The target theme is the `theme` id configured in shopify.theme.toml
+#  [environments.default]; the theme is pushed UNPUBLISHED-style (we do NOT
+#  pass --publish), so the merchant reviews and publishes from the theme editor.
+# ============================================================
+name: Deploy Theme
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Never run two deploys at once; queue them instead of cancelling a live push.
+concurrency:
+  group: deploy-theme-main
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Push theme to Shopify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Shopify CLI 4.x requires Node >= 22.12.0.
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Installs the @shopify/cli devDependency declared in package.json.
+      - name: Install Shopify CLI
+        run: npm install
+
+      # Use SHOPIFY_FLAG_STORE from secrets when present; otherwise fall back to
+      # the store in shopify.theme.toml. Avoids exporting an empty env var.
+      - name: Resolve store target
+        env:
+          STORE_FROM_SECRET: ${{ secrets.SHOPIFY_FLAG_STORE }}
+        run: |
+          if [ -n "$STORE_FROM_SECRET" ]; then
+            echo "SHOPIFY_FLAG_STORE=$STORE_FROM_SECRET" >> "$GITHUB_ENV"
+            echo "Using store from the SHOPIFY_FLAG_STORE secret."
+          else
+            echo "SHOPIFY_FLAG_STORE secret not set; using store from shopify.theme.toml."
+          fi
+
+      - name: Push theme
+        env:
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+        run: npx shopify theme push --path . --no-color
