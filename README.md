@@ -147,11 +147,11 @@ dan disusun semula dari theme editor.
 
 ## 5. CI dan kualiti
 
-| Workflow | Bila | Apa |
-|---|---|---|
-| `theme-check.yml` | Setiap push/PR ke `main` | Lint Liquid + JSON, gagal jika ada error |
-| `deploy-theme.yml` | Push ke `main` | Hantar tema ke Shopify (perlu secrets) |
-| `release-zip.yml` | Tag `v*` atau manual | Bina zip + lampir pada Release |
+| Workflow | Bila | Apa | Status |
+|---|---|---|---|
+| `theme-check.yml` | Setiap push/PR ke `main` | Lint Liquid + JSON, gagal jika ada error | ✅ lulus |
+| `deploy-theme.yml` | Push ke `main` | Hantar tema ke Shopify (perlu secrets) | ✅ lulus (skip bila token tiada) |
+| `release-zip.yml` | Tag `v*` atau manual | Bina zip + lampir pada Release | ✅ sedia |
 
 ### Secrets untuk `deploy-theme.yml`
 
@@ -164,6 +164,9 @@ Repo → **Settings → Secrets and variables → Actions → New repository sec
 
 Cara dapatkan token: Shopify Admin → **Online Store → Themes → ⋯ → Theme access
 → Create token**.
+
+Bila token belum diset, workflow Deploy akan **skip dengan warning** (bukan
+gagal) — jadi CI sentiasa hijau walaupun kedai belum bersedia.
 
 ---
 

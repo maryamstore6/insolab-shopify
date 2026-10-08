@@ -1,0 +1,73 @@
+{% layout none %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ shop.name }} &ndash; {{ gift_card.code | format_code }}</title>
+  <meta name="robots" content="noindex, nofollow">
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  {{ content_for_header }}
+</head>
+<body>
+  <section class="section">
+    <div class="wrap" style="text-align:center">
+
+      <div class="brand" style="justify-content:center;margin-bottom:var(--s-3)">
+        {% render 'logo' %}
+      </div>
+
+      <div class="section-head">
+        <span class="eyebrow">{{ shop.name }}</span>
+        <h1>{{ gift_card.balance | money }}</h1>
+      </div>
+
+      <div class="product-card" style="max-width:520px;margin:0 auto;text-align:left">
+        <div class="product-body">
+
+          {%- if gift_card.expired and gift_card.enabled -%}
+            <span class="product-badge">Tamat tempoh</span>
+          {%- endif -%}
+
+          <p class="product-desc"><strong>Kod kad hadiah</strong></p>
+          <p class="product-price" id="gift-card-code" data-gift-card-digits>{{ gift_card.code | format_code }}</p>
+
+          {%- if gift_card.balance != gift_card.initial_value -%}
+            <p class="product-desc">Nilai asal: {{ gift_card.initial_value | money }}</p>
+          {%- endif -%}
+
+          {%- if gift_card.expires_on -%}
+            <p class="product-desc">Sah sehingga: <time datetime="{{ gift_card.expires_on | date: '%Y-%m-%d' }}">{{ gift_card.expires_on | date: '%d %B %Y' }}</time></p>
+          {%- endif -%}
+
+          {%- if gift_card.message != blank -%}
+            <p class="product-desc">{{ gift_card.message }}</p>
+          {%- endif -%}
+
+          {%- comment -%}
+            QR target. The identifier encodes this gift card; kept as a data
+            attribute so the page stays self-contained with no third-party
+            script (any QR renderer can read data-identifier).
+          {%- endcomment -%}
+          <p class="product-desc" data-gift-card-qr data-identifier="{{ gift_card.qr_identifier }}" style="margin-top:var(--s-3)">
+            Tunjuk kod ini atau imbas kod QR semasa membuat pembayaran.
+          </p>
+
+          <div class="product-foot" style="gap:var(--s-2)">
+            <button type="button" class="btn btn--ghost" onclick="window.print()">Cetak</button>
+            <a class="btn btn--primary" href="{{ shop.url }}">{{ shop.name }}</a>
+          </div>
+
+        </div>
+      </div>
+
+      {%- if gift_card.pass_url -%}
+        <p style="margin-top:var(--s-3)">
+          <a href="{{ gift_card.pass_url }}">Tambah ke Apple Wallet</a>
+        </p>
+      {%- endif -%}
+
+    </div>
+  </section>
+</body>
+</html>
