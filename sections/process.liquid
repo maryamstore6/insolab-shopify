@@ -19,12 +19,34 @@
                width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}"
                loading="lazy" decoding="async">
         {%- else -%}
-          <img src="{{ 'process-workflow-1440.jpg' | asset_url }}"
-               srcset="{{ 'process-workflow-760.jpg' | asset_url }} 760w, {{ 'process-workflow-1024.jpg' | asset_url }} 1024w, {{ 'process-workflow-1440.jpg' | asset_url }} 1440w, {{ 'process-workflow-1920.jpg' | asset_url }} 1920w, {{ 'process-workflow-2496.jpg' | asset_url }} 2496w"
-               sizes="(max-width: 900px) 92vw, min(1100px, 92vw)"
-               alt="{{ section.settings.image_alt | escape }}"
-               class="process-figure-img" width="2496" height="1728"
-               loading="lazy" decoding="async">
+          {%- comment -%}
+            Bundled fallback. WebP first (roughly half the bytes), JPEG as the
+            universal fallback, and the full ladder of rungs from 380w so small
+            phones do not download a 760w image.
+          {%- endcomment -%}
+          <picture>
+            <source type="image/webp"
+                    sizes="(max-width: 900px) 92vw, min(1100px, 92vw)"
+                    srcset="{{ 'process-workflow-380.webp' | asset_url }} 380w,
+                            {{ 'process-workflow-560.webp' | asset_url }} 560w,
+                            {{ 'process-workflow-760.webp' | asset_url }} 760w,
+                            {{ 'process-workflow-1024.webp' | asset_url }} 1024w,
+                            {{ 'process-workflow-1440.webp' | asset_url }} 1440w,
+                            {{ 'process-workflow-1920.webp' | asset_url }} 1920w,
+                            {{ 'process-workflow-2496.webp' | asset_url }} 2496w">
+            <img src="{{ 'process-workflow-1440.jpg' | asset_url }}"
+                 srcset="{{ 'process-workflow-380.jpg' | asset_url }} 380w,
+                         {{ 'process-workflow-560.jpg' | asset_url }} 560w,
+                         {{ 'process-workflow-760.jpg' | asset_url }} 760w,
+                         {{ 'process-workflow-1024.jpg' | asset_url }} 1024w,
+                         {{ 'process-workflow-1440.jpg' | asset_url }} 1440w,
+                         {{ 'process-workflow-1920.jpg' | asset_url }} 1920w,
+                         {{ 'process-workflow-2496.jpg' | asset_url }} 2496w"
+                 sizes="(max-width: 900px) 92vw, min(1100px, 92vw)"
+                 alt="{{ section.settings.image_alt | escape }}"
+                 class="process-figure-img" width="2496" height="1728"
+                 loading="lazy" decoding="async">
+          </picture>
         {%- endif -%}
         {%- if section.settings.caption != blank -%}
           <figcaption>{{ section.settings.caption }}</figcaption>

@@ -10,6 +10,23 @@
                aria-label="{{ section.settings.video_alt | escape }}">
           <source src="{{ section.settings.video_url }}" type="video/mp4">
         </video>
+      {%- elsif section.settings.bundled_video == 'guide' or section.settings.bundled_video == 'adult' -%}
+        {%- if section.settings.bundled_video == 'guide' -%}
+          {%- assign bundled_webm = 'imprint-guide.webm' -%}
+          {%- assign bundled_mp4 = 'imprint-guide.mp4' -%}
+          {%- assign bundled_poster = 'imprint-guide-poster.jpg' -%}
+        {%- else -%}
+          {%- assign bundled_webm = 'imprint-adult.webm' -%}
+          {%- assign bundled_mp4 = 'imprint-adult.mp4' -%}
+          {%- assign bundled_poster = 'imprint-adult-poster.jpg' -%}
+        {%- endif -%}
+        <video class="split-visual-film"
+               poster="{{ bundled_poster | asset_url }}"
+               preload="metadata" muted loop playsinline autoplay
+               aria-label="{{ section.settings.video_alt | escape }}">
+          <source src="{{ bundled_webm | asset_url }}" type="video/webm">
+          <source src="{{ bundled_mp4 | asset_url }}" type="video/mp4">
+        </video>
       {%- else -%}
         {%- comment -%}
           Branch, don't chain the filters here: passing the merchant's
@@ -58,6 +75,11 @@
     { "type": "header", "content": "Video" },
     { "type": "video", "id": "video", "label": "Video Shopify (disyorkan)" },
     { "type": "url", "id": "video_url", "label": "Atau pautan fail video (mp4)" },
+    { "type": "select", "id": "bundled_video", "label": "Video terbina dalam", "default": "guide", "options": [
+      { "value": "none", "label": "Tiada (guna poster)" },
+      { "value": "guide", "label": "Panduan imprint" },
+      { "value": "adult", "label": "Imprint dewasa" }
+    ] },
     { "type": "image_picker", "id": "poster", "label": "Poster / gambar ganti" },
     { "type": "text", "id": "video_alt", "label": "Alt teks", "default": "Teknik menekan kaki ke foam tray untuk mengambil bentuk kaki" }
   ],

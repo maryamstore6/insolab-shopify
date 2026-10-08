@@ -15,7 +15,7 @@ Semua fail tema berada di **akar repo** — ini keperluan Shopify.
 
 ```
 .
-├── assets/           67 fail  (CSS, JS, lib, imej)
+├── assets/           71 fail  (CSS, JS, lib, imej, video)
 ├── config/           settings_schema.json  (tetapan tema)
 │                     settings_data.json    (TIDAK di-commit — Shopify simpan)
 ├── layout/           theme.liquid
@@ -170,7 +170,34 @@ gagal) — jadi CI sentiasa hijau walaupun kedai belum bersedia.
 
 ---
 
-## 6. Nota penting
+## 6. Video
+
+Dua video imprint terbina dalam `assets/` (setiap satu ada `.webm` + `.mp4` +
+poster), dan sudah disambung ke dua seksyen **Split (video + teks)** di laman
+utama — satu tunjuk panduan imprint, satu tunjuk imprint dewasa:
+
+| Fail | Saiz | Digunakan oleh |
+|---|---|---|
+| `imprint-guide.webm` / `.mp4` | 2.65 / 5.06 MB | Split 1 (Panduan imprint) |
+| `imprint-adult.webm` / `.mp4` | 1.64 / 3.28 MB | Split 2 (Imprint dewasa) |
+
+Untuk tukar, buka **Customize → Split (video + teks) → Video terbina dalam**:
+
+| Pilihan | Maksud |
+|---|---|
+| Panduan imprint | Guna video panduan (default Split 1) |
+| Imprint dewasa | Guna video imprint dewasa (default Split 2) |
+| Tiada (guna poster) | Tunjuk gambar poster sahaja |
+
+**Keutamaan:** kalau anda muat naik video sendiri (medan **Video Shopify**)
+atau isi **pautan fail video**, itu yang akan dimainkan — video terbina dalam
+hanya jadi sandaran.
+
+Video guna `preload="metadata"` + `poster`, jadi ia **tidak** dimuat turun
+sepenuhnya semasa halaman dibuka — hanya poster. Video dimainkan bila pembaca
+skrol ke situ.
+
+## 7. Nota penting
 
 **Pembayaran:** Shopify Payments **tidak tersedia di Malaysia**. Untuk terima
 bayaran, guna manual bank transfer, Billplz, senangPay atau Stripe.
@@ -184,9 +211,14 @@ dan nota borang pesanan.
 
 ---
 
-## 7. Status semasa
+## 8. Status semasa
 
-- `shopify theme check` → **22 fail, 0 offenses** ✅
-- 13 seksyen, schema JSON sah semua
+- `shopify theme check` → **36 fail, 0 offenses** ✅
+- **18 seksyen**, semua schema JSON sah + ada presets
+- **12 templat** (index, product, cart, page, 404, search, collection,
+  list-collections, blog, article, gift_card, password)
+- **71 aset** (18 MB) — semua fail disahkan tidak rosak, tiada subfolder
 - Semua rujukan `asset_url` disahkan wujud (tiada 404)
-- Fail zip: 89 fail, fail tema di akar (tiada folder pembalut)
+- Gambar responsif: WebP dahulu, JPEG sebagai sandaran (hero, proses, arch)
+- Fail zip: **106 entri, 16.86 MB** — fail tema di akar (tiada folder pembalut),
+  had Shopify 50 MB

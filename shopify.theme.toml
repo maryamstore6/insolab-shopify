@@ -29,4 +29,5 @@ files = [
   "shopify.theme.toml",
   "*.zip",
   "docs/**",
+  "scripts/**",
 ]

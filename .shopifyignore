@@ -9,6 +9,7 @@
 # --- repo tooling / docs ---
 README.md
 docs/
+scripts/
 .github/
 .gitignore
 .editorconfig

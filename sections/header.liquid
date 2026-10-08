@@ -1,7 +1,7 @@
 <header class="hdr">
   <div class="wrap hdr-inner">
     <a href="{{ routes.root_url }}" class="brand" aria-label="{{ shop.name | escape }}">
-      {% render 'logo' %}
+      {% render 'logo', header_mark: true %}
     </a>
 
     <button class="nav-toggle" id="nav-toggle" aria-label="{{ section.settings.menu_open_label }}"
@@ -20,7 +20,7 @@
   <button class="nav-close" id="nav-close" aria-label="{{ section.settings.menu_close_label }}">
     <svg viewBox="0 0 24 24" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
   </button>
-  <span class="nav-brand">{% render 'logo' %}</span>
+  <span class="nav-brand">{% render 'logo', header_mark: true %}</span>
 
   {%- for link in section.settings.menu.links -%}
     <a href="{{ link.url }}">{{ link.title }}</a>

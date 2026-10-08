@@ -9,7 +9,17 @@
        height="{{ settings.logo.height }}"
        loading="eager">
 {%- else -%}
-  <img src="{{ 'logo-lockup@2x.png' | asset_url }}"
-       srcset="{{ 'logo-lockup@2x.png' | asset_url }} 2x, {{ 'logo-lockup@3x.png' | asset_url }} 3x"
-       alt="{{ shop.name | escape }}" width="300" height="155" loading="eager">
+  {%- comment -%}
+    Bundled fallback. The header mark is the wide, low lockup that fits a nav
+    bar; every other placement uses the square-ish lockup. Both ship in assets/.
+  {%- endcomment -%}
+  {%- if header_mark -%}
+    <img src="{{ 'logo-header@2x.png' | asset_url }}"
+         srcset="{{ 'logo-header@2x.png' | asset_url }} 2x, {{ 'logo-header@3x.png' | asset_url }} 3x"
+         alt="{{ shop.name | escape }}" width="240" height="56" loading="eager">
+  {%- else -%}
+    <img src="{{ 'logo-lockup@2x.png' | asset_url }}"
+         srcset="{{ 'logo-lockup@2x.png' | asset_url }} 2x, {{ 'logo-lockup@3x.png' | asset_url }} 3x"
+         alt="{{ shop.name | escape }}" width="300" height="155" loading="eager">
+  {%- endif -%}
 {%- endif -%}

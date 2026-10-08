@@ -60,7 +60,7 @@
               {% if block.settings.art != blank %}<img src="{{ block.settings.art | image_url: width: 640 }}"
                    alt="{{ block.settings.name | escape }}" class="product-art"
                    width="640" height="640" loading="lazy">
-              {% else %}<img src="{{ 'insole-support.svg' | asset_url }}"
+              {% else %}<img src="{{ block.settings.fallback_art | default: 'insole-support.svg' | asset_url }}"
                    alt="{{ block.settings.name | escape }}" class="product-art"
                    width="320" height="660" loading="lazy">{% endif %}
             </div>
@@ -117,11 +117,38 @@
         { "type": "textarea", "id": "description", "label": "Keterangan", "default": "Untuk yang berdiri atau berjalan 4+ jam sehari. Sokongan lebih tegas." },
         { "type": "text", "id": "price", "label": "Harga (teks)", "default": "RM399" },
         { "type": "url", "id": "link", "label": "Pautan" },
-        { "type": "image_picker", "id": "art", "label": "Gambar kad (pilihan)" }
+        { "type": "image_picker", "id": "art", "label": "Gambar kad (pilihan)" },
+        { "type": "text", "id": "fallback_art", "label": "Fail gambar terbina dalam (pilihan)", "info": "Contoh: insole-support.svg atau insole-everyday.svg" }
       ]
     }
   ],
   "max_blocks": 4,
-  "presets": [{ "name": "Produk" }]
+  "presets": [
+    {
+      "name": "Produk",
+      "blocks": [
+        {
+          "type": "fallback",
+          "settings": {
+            "name": "On My Feet All Day",
+            "badge": "Aktiviti Berat",
+            "description": "Untuk yang berdiri atau berjalan 4+ jam sehari. Sokongan lebih tegas.",
+            "price": "RM399",
+            "fallback_art": "insole-support.svg"
+          }
+        },
+        {
+          "type": "fallback",
+          "settings": {
+            "name": "Normal Everyday Activity",
+            "badge": "",
+            "description": "Untuk aktiviti harian 1–4 jam. Lebih ringan dan semula jadi.",
+            "price": "RM399",
+            "fallback_art": "insole-everyday.svg"
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

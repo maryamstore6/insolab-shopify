@@ -32,7 +32,8 @@
         "cta_label": "Soalan Lazim",
         "cta_url": "#faq",
         "flip": true,
-        "video_alt": "Pelanggan membuat imprint kaki sendiri di rumah"
+        "video_alt": "Pelanggan membuat imprint kaki sendiri di rumah",
+        "bundled_video": "adult"
       }
     },
     "process": {

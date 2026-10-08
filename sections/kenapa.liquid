@@ -24,11 +24,17 @@
                alt="{{ section.settings.image_alt | escape }}"
                class="statement-img" width="1024" height="1024" loading="lazy" decoding="async">
         {%- else -%}
-          <img src="{{ 'arch-types-760.jpg' | asset_url }}"
-               srcset="{{ 'arch-types-380.jpg' | asset_url }} 380w, {{ 'arch-types-560.jpg' | asset_url }} 560w, {{ 'arch-types-760.jpg' | asset_url }} 760w, {{ 'arch-types-1024.jpg' | asset_url }} 1024w"
-               sizes="(max-width: 900px) 92vw, 44vw"
-               alt="{{ section.settings.image_alt | escape }}"
-               class="statement-img" width="1024" height="1024" loading="lazy" decoding="async">
+          {%- comment -%} Bundled fallback: WebP first, JPEG for older browsers. {%- endcomment -%}
+          <picture>
+            <source type="image/webp"
+                    sizes="(max-width: 900px) 92vw, 44vw"
+                    srcset="{{ 'arch-types-380.webp' | asset_url }} 380w, {{ 'arch-types-560.webp' | asset_url }} 560w, {{ 'arch-types-760.webp' | asset_url }} 760w, {{ 'arch-types-1024.webp' | asset_url }} 1024w">
+            <img src="{{ 'arch-types-760.jpg' | asset_url }}"
+                 srcset="{{ 'arch-types-380.jpg' | asset_url }} 380w, {{ 'arch-types-560.jpg' | asset_url }} 560w, {{ 'arch-types-760.jpg' | asset_url }} 760w, {{ 'arch-types-1024.jpg' | asset_url }} 1024w"
+                 sizes="(max-width: 900px) 92vw, 44vw"
+                 alt="{{ section.settings.image_alt | escape }}"
+                 class="statement-img" width="1024" height="1024" loading="lazy" decoding="async">
+          </picture>
         {%- endif -%}
         {%- if section.settings.caption != blank -%}
           <figcaption>{{ section.settings.caption }}</figcaption>

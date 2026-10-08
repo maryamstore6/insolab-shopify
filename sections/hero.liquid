@@ -11,9 +11,26 @@
            height="{{ section.settings.bg_image.height }}"
            loading="eager" fetchpriority="high" aria-hidden="true">
     {%- else -%}
-      <img src="{{ 'hero-product-desktop.webp' | asset_url }}"
-           alt="" class="hero-bg-img" width="2400" height="1350"
-           loading="eager" fetchpriority="high" aria-hidden="true">
+      {%- comment -%}
+        Bundled hero fallback. The WebP <source> wins on every browser that
+        supports it (all modern ones) and is picked by viewport width; the
+        <img> is the JPEG fallback for anything older. No media queries, so a
+        desktop browser never downloads the mobile crop and vice versa.
+      {%- endcomment -%}
+      <picture>
+        <source type="image/webp"
+                sizes="100vw"
+                srcset="{{ 'hero-product-mobile.webp' | asset_url }} 768w,
+                        {{ 'hero-product-tablet.webp' | asset_url }} 1200w,
+                        {{ 'hero-product-desktop.webp' | asset_url }} 2400w">
+        <img src="{{ 'hero-product-desktop.jpg' | asset_url }}"
+             srcset="{{ 'hero-product-mobile.jpg' | asset_url }} 768w,
+                     {{ 'hero-product-tablet.jpg' | asset_url }} 1200w,
+                     {{ 'hero-product-desktop.jpg' | asset_url }} 2400w"
+             sizes="100vw"
+             alt="" class="hero-bg-img" width="2400" height="1350"
+             loading="eager" fetchpriority="high" aria-hidden="true">
+      </picture>
     {%- endif -%}
     <div class="hero-bg-overlay"></div>
   </div>
