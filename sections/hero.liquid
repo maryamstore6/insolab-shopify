@@ -94,10 +94,12 @@
     </div>
   </div>
 
+  {%- if section.settings.show_scroll_hint -%}
   <div class="scroll-hint" aria-hidden="true">
-    <span>Scroll</span>
+    <span>{{ section.settings.scroll_hint }}</span>
     <span class="scroll-hint-line"></span>
   </div>
+  {%- endif -%}
 </section>
 
 {% schema %}
@@ -116,7 +118,10 @@
     { "type": "image_picker", "id": "bg_image", "label": "Latar belakang (pilihan)" },
     { "type": "image_picker", "id": "visual_image", "label": "Gambar produk (pilihan)" },
     { "type": "text", "id": "visual_alt", "label": "Alt gambar produk", "default": "InsoLab — insole custom dengan zon sokongan dan kit acuan kaki" },
-    { "type": "text", "id": "visual_caption", "label": "Kapsyen gambar", "default": "Custom Insole — Zon Sokongan" }
+    { "type": "text", "id": "visual_caption", "label": "Kapsyen gambar", "default": "Custom Insole — Zon Sokongan" },
+    { "type": "header", "content": "Petunjuk skrol" },
+    { "type": "checkbox", "id": "show_scroll_hint", "label": "Tunjuk petunjuk skrol", "default": true },
+    { "type": "text", "id": "scroll_hint", "label": "Teks petunjuk skrol", "default": "Scroll" }
   ],
   "blocks": [
     {

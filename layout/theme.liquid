@@ -18,9 +18,19 @@
   <meta property="og:title" content="{{ page_title | escape }}">
   <meta property="og:type" content="website">
   {% if page_description %}<meta property="og:description" content="{{ page_description | escape }}">{% endif %}
-  {% if settings.share_image %}<meta property="og:image" content="{{ settings.share_image | image_url: width: 1200 }}">{% endif %}
+  {% if settings.share_image %}
+    <meta property="og:image" content="{{ settings.share_image | image_url: width: 1200 }}">
+  {% else %}
+    <meta property="og:image" content="{{ 'og-image.png' | asset_url | prepend: 'https:' }}">
+  {% endif %}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ page_title | escape }}">
+  {% if page_description %}<meta name="twitter:description" content="{{ page_description | escape }}">{% endif %}
+  {% if settings.share_image %}
+    <meta name="twitter:image" content="{{ settings.share_image | image_url: width: 1200 }}">
+  {% else %}
+    <meta name="twitter:image" content="{{ 'og-image.png' | asset_url | prepend: 'https:' }}">
+  {% endif %}
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +38,8 @@
 
   {% if settings.favicon %}
     <link rel="icon" href="{{ settings.favicon | image_url: width: 64 }}" type="image/png">
+  {% else %}
+    <link rel="icon" href="{{ 'favicon.svg' | asset_url }}" type="image/svg+xml">
   {% endif %}
 
   {{ 'base.css' | asset_url | stylesheet_tag }}

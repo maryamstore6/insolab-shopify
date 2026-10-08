@@ -44,51 +44,51 @@
           <div class="form-row">
             <label class="form-label" for="f-name-{{ section.id }}">{{ section.settings.name_label }}</label>
             <input class="form-input" id="f-name-{{ section.id }}" name="attributes[Nama]" type="text"
-                   placeholder="Seperti dalam kad pengenalan" autocomplete="name" required>
+                   placeholder="{{ section.settings.name_placeholder }}" autocomplete="name" required>
           </div>
 
           <div class="form-row-2">
             <div class="form-row">
               <label class="form-label" for="f-phone-{{ section.id }}">{{ section.settings.phone_label }}</label>
               <input class="form-input" id="f-phone-{{ section.id }}" name="attributes[Telefon]" type="tel"
-                     placeholder="01X-XXX XXXX" autocomplete="tel" required>
+                     placeholder="{{ section.settings.phone_placeholder }}" autocomplete="tel" required>
             </div>
             <div class="form-row">
-              <label class="form-label" for="f-email-{{ section.id }}">Email</label>
+              <label class="form-label" for="f-email-{{ section.id }}">{{ section.settings.email_label }}</label>
               <input class="form-input" id="f-email-{{ section.id }}" name="attributes[Email]" type="email"
-                     placeholder="nama@email.com" autocomplete="email" required>
+                     placeholder="{{ section.settings.email_placeholder }}" autocomplete="email" required>
             </div>
           </div>
 
           <div class="form-row">
-            <label class="form-label" for="f-addr-{{ section.id }}">Alamat Penghantaran</label>
+            <label class="form-label" for="f-addr-{{ section.id }}">{{ section.settings.addr_label }}</label>
             <input class="form-input" id="f-addr-{{ section.id }}" name="attributes[Alamat]" type="text"
-                   placeholder="No. rumah, jalan" autocomplete="street-address" required>
+                   placeholder="{{ section.settings.addr_placeholder }}" autocomplete="street-address" required>
           </div>
 
           <div class="form-row-2">
             <div class="form-row">
-              <label class="form-label" for="f-city-{{ section.id }}">Bandar</label>
+              <label class="form-label" for="f-city-{{ section.id }}">{{ section.settings.city_label }}</label>
               <input class="form-input" id="f-city-{{ section.id }}" name="attributes[Bandar]" type="text"
-                     placeholder="Bandar" autocomplete="address-level2" required>
+                     placeholder="{{ section.settings.city_placeholder }}" autocomplete="address-level2" required>
             </div>
             <div class="form-row">
-              <label class="form-label" for="f-state-{{ section.id }}">Negeri</label>
+              <label class="form-label" for="f-state-{{ section.id }}">{{ section.settings.state_label }}</label>
               <input class="form-input" id="f-state-{{ section.id }}" name="attributes[Negeri]" type="text"
-                     placeholder="Negeri" autocomplete="address-level1" required>
+                     placeholder="{{ section.settings.state_placeholder }}" autocomplete="address-level1" required>
             </div>
           </div>
 
           <div class="form-row-2">
             <div class="form-row">
-              <label class="form-label" for="f-post-{{ section.id }}">Poskod</label>
+              <label class="form-label" for="f-post-{{ section.id }}">{{ section.settings.post_label }}</label>
               <input class="form-input" id="f-post-{{ section.id }}" name="attributes[Poskod]" type="text"
-                     placeholder="XXXXX" autocomplete="postal-code" required>
+                     placeholder="{{ section.settings.post_placeholder }}" autocomplete="postal-code" required>
             </div>
             <div class="form-row">
-              <label class="form-label" for="f-notes-{{ section.id }}">Nota (pilihan)</label>
+              <label class="form-label" for="f-notes-{{ section.id }}">{{ section.settings.notes_label }}</label>
               <input class="form-input" id="f-notes-{{ section.id }}" name="attributes[Nota]" type="text"
-                     placeholder="Ada apa-apa kami perlu tahu?">
+                     placeholder="{{ section.settings.notes_placeholder }}">
             </div>
           </div>
         {%- endif -%}
@@ -155,9 +155,9 @@
         <div class="qty-row">
           <span class="qty-label">{{ section.settings.qty_label }}</span>
           <div class="qty-stepper">
-            <button type="button" id="qty-minus-{{ section.id }}" aria-label="Kurangkan kuantiti">&minus;</button>
+            <button type="button" id="qty-minus-{{ section.id }}" aria-label="{{ section.settings.qty_minus_label }}">&minus;</button>
             <span id="qty-value-{{ section.id }}" aria-live="polite">1</span>
-            <button type="button" id="qty-plus-{{ section.id }}" aria-label="Tambah kuantiti">+</button>
+            <button type="button" id="qty-plus-{{ section.id }}" aria-label="{{ section.settings.qty_plus_label }}">+</button>
           </div>
         </div>
 
@@ -213,6 +213,20 @@
     { "type": "checkbox", "id": "show_customer_fields", "label": "Tunjuk medan pelanggan", "default": true },
     { "type": "text", "id": "name_label", "label": "Label nama", "default": "Nama Penuh *" },
     { "type": "text", "id": "phone_label", "label": "Label telefon", "default": "No. Telefon *" },
+    { "type": "text", "id": "name_placeholder", "label": "Placeholder nama", "default": "Seperti dalam kad pengenalan" },
+    { "type": "text", "id": "phone_placeholder", "label": "Placeholder telefon", "default": "01X-XXX XXXX" },
+    { "type": "text", "id": "email_label", "label": "Label email", "default": "Email" },
+    { "type": "text", "id": "email_placeholder", "label": "Placeholder email", "default": "nama@email.com" },
+    { "type": "text", "id": "addr_label", "label": "Label alamat", "default": "Alamat Penghantaran" },
+    { "type": "text", "id": "addr_placeholder", "label": "Placeholder alamat", "default": "No. rumah, jalan" },
+    { "type": "text", "id": "city_label", "label": "Label bandar", "default": "Bandar" },
+    { "type": "text", "id": "city_placeholder", "label": "Placeholder bandar", "default": "Bandar" },
+    { "type": "text", "id": "state_label", "label": "Label negeri", "default": "Negeri" },
+    { "type": "text", "id": "state_placeholder", "label": "Placeholder negeri", "default": "Negeri" },
+    { "type": "text", "id": "post_label", "label": "Label poskod", "default": "Poskod" },
+    { "type": "text", "id": "post_placeholder", "label": "Placeholder poskod", "default": "XXXXX" },
+    { "type": "text", "id": "notes_label", "label": "Label nota", "default": "Nota (pilihan)" },
+    { "type": "text", "id": "notes_placeholder", "label": "Placeholder nota", "default": "Ada apa-apa kami perlu tahu?" },
     { "type": "textarea", "id": "note", "label": "Nota bawah borang", "default": "Dengan membuat pesanan, anda bersetuju dengan terma kami. InsoLab custom insoles adalah produk untuk keselesaan dan sokongan — bukan alat perubatan." },
     { "type": "header", "content": "Buy box" },
     { "type": "text", "id": "picker_title", "label": "Tajuk pemilih", "default": "Pilih Pakej Anda" },
@@ -222,6 +236,8 @@
     { "type": "text", "id": "badge_text", "label": "Teks badge", "default": "PALING JIMAT" },
     { "type": "text", "id": "no_collection_text", "label": "Teks bila tiada koleksi", "default": "Pilih koleksi pakej dalam tetapan seksyen ini." },
     { "type": "text", "id": "qty_label", "label": "Label kuantiti", "default": "Kuantiti" },
+    { "type": "text", "id": "qty_minus_label", "label": "Label butang kurang (pembaca skrin)", "default": "Kurangkan kuantiti" },
+    { "type": "text", "id": "qty_plus_label", "label": "Label butang tambah (pembaca skrin)", "default": "Tambah kuantiti" },
     { "type": "text", "id": "cta_label", "label": "Label butang", "default": "Tambah ke Troli" },
     { "type": "textarea", "id": "ship_note", "label": "Nota penghantaran", "default": "Penghantaran percuma — kami tanggung kos pos kit dan penghantaran balik" },
     { "type": "text", "id": "urgency", "label": "Baris segera", "default": "Kit dipos dalam 2–3 hari kerja" },
